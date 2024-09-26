@@ -32,7 +32,7 @@ In this project, we use machine learning to predict which crops can be grown in 
 
 1. **Clone the Repository**:
    ```
-   git clone https://github.com/your-username/CropPredictionProject.git
+   git clone https:/Sanskaragrawal2107/github.com//CropPredictionProject.git
    ```
 
 2. **Install the Required Dependencies**:
