@@ -1,6 +1,3 @@
-Here's a `README.md` file content for your crop prediction project in an interactive and beginner-friendly tone:
-
----
 
 # 🌾 Crop Prediction Model
 
@@ -32,7 +29,8 @@ In this project, we use machine learning to predict which crops can be grown in 
 
 1. **Clone the Repository**:
    ```
-   git clone Sanskaragrawal2107/github.com//CropPredictionProject.git
+git clone https://github.com/Sanskaragrawal2107/CropPredictionProject.git
+
    ```
 
 2. **Install the Required Dependencies**:
