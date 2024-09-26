@@ -29,7 +29,7 @@ In this project, we use machine learning to predict which crops can be grown in 
 
 1. **Clone the Repository**:
    ```
-git clone https:/Sanskaragrawal2107/github.com//CropPredictionProject.git
+https://github.com/Sanskaragrawal2107/CropPredictionProject.git
 
    ```
 
