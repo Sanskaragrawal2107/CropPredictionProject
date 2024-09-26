@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            border-color: #66afe9;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #4cae4c;
+        }
+
+        .prediction-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #5cb85c;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crop Prediction</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="input-group">
+                <label for="N_SOIL">N_SOIL (Nitrogen):</label>
+                <input type="number" step="any" id="N_SOIL" name="N_SOIL" required>
+            </div>
+
+            <div class="input-group">
+                <label for="P_SOIL">P_SOIL (Phosphorus):</label>
+                <input type="number" step="any" id="P_SOIL" name="P_SOIL" required>
+            </div>
+
+            <div class="input-group">
+                <label for="K_SOIL">K_SOIL (Potassium):</label>
+                <input type="number" step="any" id="K_SOIL" name="K_SOIL" required>
+            </div>
+
+            <div class="input-group">
+                <label for="TEMPERATURE">TEMPERATURE (°C):</label>
+                <input type="number" step="any" id="TEMPERATURE" name="TEMPERATURE" required>
+            </div>
+
+            <div class="input-group">
+                <label for="HUMIDITY">HUMIDITY (%):</label>
+                <input type="number" step="any" id="HUMIDITY" name="HUMIDITY" required>
+            </div>
+
+            <div class="input-group">
+                <label for="ph">pH:</label>
+                <input type="number" step="any" id="ph" name="ph" required>
+            </div>
+
+            <div class="input-group">
+                <label for="RAINFALL">RAINFALL (mm):</label>
+                <input type="number" step="any" id="RAINFALL" name="RAINFALL" required>
+            </div>
+
+            <div class="input-group">
+                <label for="STATE">STATE:</label>
+                <select id="STATE" name="STATE" required>
+                    <option value="">Select State</option>
+                    <!-- State options will be populated here -->
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="CROP_PRICE">CROP_PRICE (₹ per quintal):</label>
+                <input type="number" step="any" id="CROP_PRICE" name="CROP_PRICE" required>
+            </div>
+
+            <input type="submit" class="submit-btn" value="Predict">
+        </form>
+
+        <h2 class="prediction-text">{{ prediction_text }}</h2>
+    </div>
+
+    <script>
+        // Fetch allowed states for the dropdown
+        fetch('/allowed_states')
+        .then(response => response.json())
+        .then(data => {
+            const stateSelect = document.getElementById('STATE');
+            data.forEach(state => {
+                const option = document.createElement('option');
+                option.value = state;
+                option.textContent = state;
+                stateSelect.appendChild(option);
+            });
+        });
+    </script>
+</body>
+</html>
